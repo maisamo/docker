@@ -62,7 +62,7 @@
 	  				<form method="post" action="SendMensager">
 	  					<div class="form-group">
 						    <label for="exampleSelect1">Paciente</label>
-					    	<select class="form-control" id="exampleSelect1" name="paciente">
+					    	<select class="form-control" id="exampleSelect1" name="nome">
 					      		<option> </option>
 					      		<option>Paciente 1</option>
 					      		<option>Paciente 2</option>
@@ -81,7 +81,7 @@
 					  	</div>
 					  	<div class="form-group">
 						    <label for="exampleSelect1">Tipo de Alerta</label>
-					    	<select class="form-control" id="exampleSelect1" name="tipoAlerta">
+					    	<select class="form-control" id="exampleSelect1" name="tipomensagem">
 					    		<option> </option>
 					      		<option>Exame</option>
 					      		<option>Consulta</option>
@@ -99,7 +99,7 @@
 					  	</div>
 					  	<div class="form-group">
 						    <label for="exampleTextarea">Mensagem</label>
-						    <textarea class="form-control" id="exampleTextarea" name="mensagem" rows="5"></textarea>
+						    <textarea class="form-control" id="exampleTextarea" name="descricao" rows="5"></textarea>
 					  	</div>
 					  	<input style="float:right" type="submit" class="btn btn-success" value="Concluir">
 					</form>
