@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MaisAmo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap4/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="bootstrap4/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
 </head>
 <body>
 	<div class="container-fluid" style="background-color: #42f4b3">
