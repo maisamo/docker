@@ -83,9 +83,9 @@
 						    <label for="exampleSelect1">Tipo de Alerta</label>
 					    	<select class="form-control" id="exampleSelect1" name="tipomensagem">
 					    		<option> </option>
-					      		<option>Exame</option>
-					      		<option>Consulta</option>
-					      		<option>Preparatório</option>
+					      		<option>EXAME</option>
+					      		<option>CONSULTA</option>
+					      		<option>PREPARATÓRIO</option>
 					    	</select>
 					  	</div>
 					  	<div class="form-group">

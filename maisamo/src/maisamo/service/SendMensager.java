@@ -47,30 +47,28 @@ public class SendMensager extends HttpServlet {
 		String msgCorrigida = new String(mensagem.getDescricao().getBytes("utf-8"), "utf-8");
 		 
 		StringBuffer sb = new StringBuffer();
-		sb.append("Formulario enviado pela: Ouvidoria");
-		sb.append("\n");
-		sb.append("Nome: "+nomeCorrigido);
-		sb.append("\n");
-		sb.append("Assunto: "+assuntoCorrigido);
-		sb.append("\n");
-		sb.append("Mensagem: "+msgCorrigida);
+		sb.append("Olá, "+paciente.getNome());
+		sb.append("\n\n\n");
+		sb.append("Esta mensagem é um alerta de \""+assuntoCorrigido+"\"");
+		sb.append("\n\n");
+		sb.append(msgCorrigida);
 		
 		email = new SimpleEmail(); 
 		try {
 			email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail
 			email.setAuthentication("thiagotierre.lima@gmail.com", "thiago.tierre.de.lima@141090");
-			email.addTo(paciente.getEmail(), "TESTE JAVA MAIL PDS"); //destinatario
-			email.setFrom(emailRemetente, nomeCorrigido); // remetente 
+			email.addTo(paciente.getEmail()); //destinatario
+			email.setFrom("maismo.contato@gmail.com", "Maisamo - Histórico Médico"); // remetente 
 			email.setSubject(assuntoCorrigido); // assunto do e-mail
 			email.setContent("CONTENT", "text/html; charset=utf-8");
 			email.setMsg(new String(sb.toString().getBytes("utf-8"), "UTF-8")); //conteudo do e-mail
 			email.setSSLOnConnect(true);
 			email.send(); //envia o e-mail
-			
+			System.out.println("E-mail enviado!");
+			response.sendRedirect("index.jsp");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
 	}
 
 }

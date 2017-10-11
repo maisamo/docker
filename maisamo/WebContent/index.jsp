@@ -42,7 +42,7 @@
 					    <a class="nav-link active" href="index.jsp"><div class="btn btn-outline-primary">Pacientes <i class="fa fa-users" aria-hidden="true"></i></div></a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" href="email.jsp"><div class="btn btn-outline-primary">Novo alerta <i class="fa fa-warning" aria-hidden="true"></i></div></a>
+					    <a class="nav-link" href="novoAlerta.jsp"><div class="btn btn-outline-primary">Novo alerta <i class="fa fa-warning" aria-hidden="true"></i></div></a>
 					  </li>
 					  <!-- 
 					  <li class="nav-item">
