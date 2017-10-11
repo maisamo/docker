@@ -39,7 +39,6 @@ public class SendMensager extends HttpServlet {
 		mensagem.setTipomensagem(TipoMensagem.valueOf(request.getParameter("tipomensagem")));
 		mensagem.setPaciente(paciente);
 		
-		
 		String nomeRemetente = paciente.getNome();
 		String emailRemetente = paciente.getEmail();
 		String nomeCorrigido = new String(nomeRemetente.getBytes("utf-8"), "UTF-8");
@@ -58,16 +57,16 @@ public class SendMensager extends HttpServlet {
 		
 		email = new SimpleEmail(); 
 		try {
-			email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail 
-			email.addTo("thiagotierre.lima@gmail.com", "TESTE JAVA MAIL PDS"); //destinatario
+			email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail
+			email.setAuthentication("thiagotierre.lima@gmail.com", "thiago.tierre.de.lima@141090");
+			email.addTo(paciente.getEmail(), "TESTE JAVA MAIL PDS"); //destinatario
 			email.setFrom(emailRemetente, nomeCorrigido); // remetente 
 			email.setSubject(assuntoCorrigido); // assunto do e-mail
 			email.setContent("CONTENT", "text/html; charset=utf-8");
 			email.setMsg(new String(sb.toString().getBytes("utf-8"), "UTF-8")); //conteudo do e-mail
 			email.setSSLOnConnect(true);
 			email.send(); //envia o e-mail
-			System.out.println("NomeCorrigido: "+nomeCorrigido+" AssuntoCorrigido: "+assuntoCorrigido
-			+" MensagemCorrigida: "+msgCorrigida);
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
