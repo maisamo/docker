@@ -1,6 +1,5 @@
 package maisamo.model;
 
 public enum TipoMensagem {
-	EXAME, CONSULTA
-
+	EXAME, CONSULTA, PREPARATÓRIO
 }

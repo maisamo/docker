@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MaisAmo</title>
+<title>Maisamo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" type="text/css" href="bootstrap4/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
@@ -39,11 +39,12 @@
 	  			<div class="d-inline-flex mr-2 col-3" style="background-color: #f7f7f7; height: 800px;">
 	  				<ul class="nav flex-column">
 					  <li class="nav-item">
-					    <a class="nav-link active" href="#"><div class="btn btn-outline-primary" href="#">Selecionar pacientes <i class="fa fa-users" aria-hidden="true"></i></div></a>
+					    <a class="nav-link active" href="index.jsp"><div class="btn btn-outline-primary">Pacientes <i class="fa fa-users" aria-hidden="true"></i></div></a>
 					  </li>
-					  <!-- <li class="nav-item">
-					    <a class="nav-link" href="#">Link</a>
+					  <li class="nav-item">
+					    <a class="nav-link" href="email.jsp"><div class="btn btn-outline-primary">Novo alerta <i class="fa fa-warning" aria-hidden="true"></i></div></a>
 					  </li>
+					  <!-- 
 					  <li class="nav-item">
 					    <a class="nav-link" href="#">Link</a>
 					  </li>
@@ -55,7 +56,7 @@
 	  			<!-- conteudo -->
 	  			<div class="col" style="background-color: #f7f7f7; height: 800px;">
   					<nav class="breadcrumb mt-1">
-					  <a class="breadcrumb-item" href="index.html">Home</a>
+					  <a class="breadcrumb-item" href="index.jsp">Home</a>
 					  <span class="breadcrumb-item active">Pacientes</span>
 					</nav>
 	  				<table class="table table-hover">
@@ -92,7 +93,7 @@
 			</div>
 			<div class="row">
 				<div class="col mr-3 ml-3 pb-2 text-center" style="background-color: #f7f7f7">
-					<div class="col mt-3"><span><i class="fa fa-copyright" aria-hidden="true"></i> 2017 -Liga Contra o Câncer - Todos os Direitos Reservados</span></div>
+					<div class="col mt-3"><span><i class="fa fa-copyright" aria-hidden="true"></i> 2017 - Liga Contra o Câncer - Todos os Direitos Reservados</span></div>
 				</div>
 			</div>
 		</div>
