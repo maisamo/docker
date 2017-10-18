@@ -58,7 +58,7 @@ public class SendMensager extends HttpServlet {
 			email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail
 			email.setAuthentication("thiagotierre.lima@gmail.com", "thiago.tierre.de.lima@141090");
 			email.addTo(paciente.getEmail()); //destinatario
-			email.setFrom("maismo.contato@gmail.com", "Maisamo - Histórico Médico"); // remetente 
+			email.setFrom("maisamo.contato@gmail.com", "Maisamo - Histórico Médico"); // remetente 
 			email.setSubject(assuntoCorrigido); // assunto do e-mail
 			email.setContent("CONTENT", "text/html; charset=utf-8");
 			email.setMsg(new String(sb.toString().getBytes("utf-8"), "UTF-8")); //conteudo do e-mail
