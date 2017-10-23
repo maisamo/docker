@@ -1,4 +1,4 @@
 # pds-web (sistemas operacionais)
-## Arthur Pinheiro
-## Thiago Tierre
-## Victor Wagner
+- Arthur Pinheiro
+- Thiago Tierre
+- Victor Wagner
