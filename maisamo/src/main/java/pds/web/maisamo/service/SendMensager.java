@@ -1,4 +1,4 @@
-package maisamo.service;
+package pds.web.maisamo.service;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.mail.SimpleEmail;
 
-import maisamo.model.Mensagem;
-import maisamo.model.Paciente;
-import maisamo.model.TipoMensagem;
+import pds.web.maisamo.model.Mensagem;
+import pds.web.maisamo.model.Paciente;
+import pds.web.maisamo.model.TipoMensagem;
+
 
 /**
  * Servlet implementation class SendMensager

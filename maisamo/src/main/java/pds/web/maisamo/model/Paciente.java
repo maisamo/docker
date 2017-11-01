@@ -1,4 +1,4 @@
-package maisamo.model;
+package pds.web.maisamo.model;
 
 public class Paciente {
 	private String id;

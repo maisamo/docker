@@ -1,4 +1,4 @@
-package maisamo.model;
+package pds.web.maisamo.model;
 
 public class Mensagem {
 	private String id;
