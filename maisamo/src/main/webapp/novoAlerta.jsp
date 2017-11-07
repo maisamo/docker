@@ -1,3 +1,6 @@
+
+<%@page import="pds.web.maisamo.model.TipoAlerta"%>
+<%@page import="pds.web.maisamo.DAO.TipoAlertaDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -62,13 +65,12 @@
 	  				<form method="post" action="SendMensager">
 	  					<div class="form-group">
 						    <label for="exampleSelect1">Paciente</label>
-					    	<select class="form-control" id="exampleSelect1" name="nome">
+					    	<select class="form-control" id="exampleSelect1" name="tipo_alerta">
 					      		<option> </option>
-					      		<option>Paciente 1</option>
-					      		<option>Paciente 2</option>
-					      		<option>Paciente 3</option>
-					      		<option>Paciente 4</option>
-					      		<option>Paciente 5</option>
+					      		<%TipoAlertaDAO dao = new TipoAlertaDAO();
+						    		for(TipoAlerta tipo:dao.listar()){%>
+					      		<option value="<%=tipo.getId() %>"><%=tipo.getNome() %></option>
+					      		<%} %>
 					    	</select>
 					  	</div>
 					  	<div class="form-group">
