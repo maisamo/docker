@@ -10,11 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.mail.SimpleEmail;
 
 import pds.web.maisamo.model.Alerta;
-import pds.web.maisamo.model.Paciente;
 
-/**
- * Servlet implementation class SendMensager
- */
 @WebServlet("/SendMensager")
 public class SendMensager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,26 +25,26 @@ public class SendMensager extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Alerta mensagem = new Alerta();
+		/*Alerta mensagem = new Alerta();
 		Paciente paciente = new Paciente();
 		paciente.setNome(request.getParameter("nome"));
 		paciente.setEmail(request.getParameter("email"));
 		paciente.setTelefone(request.getParameter("telefone"));
-		/*mensagem.setDescricao(request.getParameter("descricao"));
+		mensagem.setDescricao(request.getParameter("descricao"));
 		mensagem.setTipomensagem(TipoAlerta.valueOf(request.getParameter("tipomensagem")));
-		mensagem.setPaciente(paciente);*/
+		mensagem.setPaciente(paciente);
 		
 		String nomeRemetente = paciente.getNome();
 		String emailRemetente = paciente.getEmail();
 		String nomeCorrigido = new String(nomeRemetente.getBytes("utf-8"), "UTF-8");
 		 
-		/*String assuntoCorrigido = new String(mensagem.getTipomensagem().toString().getBytes("utf-8"), "UTF-8");
-		String msgCorrigida = new String(mensagem.getDescricao().getBytes("utf-8"), "utf-8");*/
+		String assuntoCorrigido = new String(mensagem.getTipomensagem().toString().getBytes("utf-8"), "UTF-8");
+		String msgCorrigida = new String(mensagem.getDescricao().getBytes("utf-8"), "utf-8");
 		 
 		StringBuffer sb = new StringBuffer();
 		sb.append("Olá, "+paciente.getNome());
 		sb.append("\n\n\n");
-		/*sb.append("Esta mensagem é um alerta de \""+assuntoCorrigido+"\"");*/
+		sb.append("Esta mensagem é um alerta de \""+assuntoCorrigido+"\"");
 		sb.append("Esta mensagem é um alerta de teste");
 		sb.append("\n\n");
 		sb.append("oiaoijcoiaj");
@@ -59,7 +55,7 @@ public class SendMensager extends HttpServlet {
 			email.setAuthentication("thiagotierre.lima@gmail.com", "thiago.tierre.de.lima@141090");
 			email.addTo(paciente.getEmail()); //destinatario
 			email.setFrom("maisamo.contato@gmail.com", "Maisamo - Histórico Médico"); // remetente 
-			/*email.setSubject(assuntoCorrigido);*/ // assunto do e-mail
+			email.setSubject(assuntoCorrigido); // assunto do e-mail
 			email.setSubject("Assunto TESTE"); // assunto do e-mail
 			email.setContent("CONTENT", "text/html; charset=utf-8");
 			email.setMsg(new String(sb.toString().getBytes("utf-8"), "UTF-8")); //conteudo do e-mail
@@ -69,7 +65,7 @@ public class SendMensager extends HttpServlet {
 			response.sendRedirect("index.jsp");
 		} catch (Exception e) {
 			System.out.println(e);
-		}
+		}*/
 	}
 
 }

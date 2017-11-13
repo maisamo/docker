@@ -1,14 +1,13 @@
 package pds.web.maisamo.DAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import pds.we.maisamo.conexao.Conexao;
+import pds.web.maisamo.conexao.Conexao;
 import pds.web.maisamo.model.Alerta;
 
 public class AlertaDAO {
@@ -23,16 +22,14 @@ public class AlertaDAO {
 	
 	public void cadastrar(Alerta alerta)
 	{
-		String sql = "INSERT INTO alerta (email,telefone,log_date, tipo_alerta_id, frequencia) values (?,?,?,?,?)";
+		String sql = "INSERT INTO alerta (titulo,mensagem ,categoria ) values (?,?,?)";
 		
 		try {
 			connection = conexao.abrirConexao();
 			preparador = connection.prepareStatement(sql);
-			preparador.setString(1, alerta.getEmail());
-			preparador.setString(2, alerta.getTelefone());
-			preparador.setDate(3, Date.valueOf(alerta.getLog_date()));
-			preparador.setLong(4, alerta.getTipoalerta());
-			preparador.setInt(5, alerta.getFrequencia());
+			preparador.setString(1, alerta.getTitulo());
+			preparador.setString(2, alerta.getMensagem());
+			preparador.setString(3, alerta.getCategoria());
 			
 			preparador.execute();
 		} catch (SQLException e) {
@@ -45,17 +42,16 @@ public class AlertaDAO {
 	
 	public void editar( Alerta alerta)
 	{
-		String sql = "UPDATE alerta SET email = ?, telefone = ?, frequencia = ?, tipoalerta = ? where id = ?";
+		String sql = "UPDATE alerta SET titulo = ?, mensagem = ?, categoria = ?, tipoalerta = ? where id = ?";
 		
 		try {
 			
 			connection = conexao.abrirConexao();
 			preparador = connection.prepareStatement(sql);
-			preparador.setString(1, alerta.getEmail());
-			preparador.setString(2, alerta.getTelefone());
-			preparador.setInt(3, alerta.getFrequencia());
-			preparador.setLong(4, alerta.getTipoalerta());
-			preparador.setLong(5, alerta.getId());
+			preparador.setString(1, alerta.getTitulo());
+			preparador.setString(2, alerta.getMensagem());
+			preparador.setString(3, alerta.getCategoria());
+			preparador.setLong(4, alerta.getId());
 			preparador.execute();
 			
 		} catch (SQLException e) {
@@ -107,10 +103,9 @@ public class AlertaDAO {
 			{
 				Alerta alerta = new Alerta();
 				alerta.setId(rs.getLong("id"));
-				alerta.setEmail(rs.getString("email"));
-				alerta.setTelefone(rs.getString("telefone"));
-				alerta.setFrequencia(rs.getInt("frequencia"));
-				alerta.setTipoalerta(rs.getLong("tipoalerta"));
+				alerta.setTitulo(rs.getString("titulo"));
+				alerta.setMensagem(rs.getString("mensagem"));
+				alerta.setCategoria(rs.getString("categoria"));
 				lista.add(alerta);
 			}
 			

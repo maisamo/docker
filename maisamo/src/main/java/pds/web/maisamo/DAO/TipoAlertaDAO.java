@@ -7,14 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import pds.we.maisamo.conexao.Conexao;
-import pds.web.maisamo.model.TipoAlerta;
+import pds.web.maisamo.conexao.Conexao;
 
 public class TipoAlertaDAO {
 	private Connection connection;
 	private Conexao conexao;
 	
-	public TipoAlertaDAO() {
+	/*public TipoAlertaDAO() {
 		conexao = new Conexao();
 	}
 	
@@ -52,5 +51,5 @@ public class TipoAlertaDAO {
 		}
 		
 		return lista;
-	}
+	}*/
 }
