@@ -30,7 +30,6 @@ public class AlertaDAO {
 			preparador.setString(1, alerta.getTitulo());
 			preparador.setString(2, alerta.getMensagem());
 			preparador.setString(3, alerta.getCategoria());
-			
 			preparador.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

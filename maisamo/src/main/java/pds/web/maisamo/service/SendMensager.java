@@ -26,21 +26,14 @@ public class SendMensager extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*Alerta mensagem = new Alerta();
-		Paciente paciente = new Paciente();
-		paciente.setNome(request.getParameter("nome"));
-		paciente.setEmail(request.getParameter("email"));
-		paciente.setTelefone(request.getParameter("telefone"));
-		mensagem.setDescricao(request.getParameter("descricao"));
-		mensagem.setTipomensagem(TipoAlerta.valueOf(request.getParameter("tipomensagem")));
-		mensagem.setPaciente(paciente);
 		
 		String nomeRemetente = paciente.getNome();
 		String emailRemetente = paciente.getEmail();
 		String nomeCorrigido = new String(nomeRemetente.getBytes("utf-8"), "UTF-8");
 		 
-		String assuntoCorrigido = new String(mensagem.getTipomensagem().toString().getBytes("utf-8"), "UTF-8");
-		String msgCorrigida = new String(mensagem.getDescricao().getBytes("utf-8"), "utf-8");
-		 
+		/*String assuntoCorrigido = new String(mensagem.getTipomensagem().toString().getBytes("utf-8"), "UTF-8");
+		String msgCorrigida = new String(mensagem.getDescricao().getBytes("utf-8"), "utf-8");*/
+		/* 
 		StringBuffer sb = new StringBuffer();
 		sb.append("Olá, "+paciente.getNome());
 		sb.append("\n\n\n");
@@ -52,7 +45,7 @@ public class SendMensager extends HttpServlet {
 		email = new SimpleEmail(); 
 		try {
 			email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail
-			email.setAuthentication("thiagotierre.lima@gmail.com", "thiago.tierre.de.lima@141090");
+			email.setAuthentication("alertamaisamo@gmail.com", "Maisamoalerta1");
 			email.addTo(paciente.getEmail()); //destinatario
 			email.setFrom("maisamo.contato@gmail.com", "Maisamo - Histórico Médico"); // remetente 
 			email.setSubject(assuntoCorrigido); // assunto do e-mail

@@ -10,7 +10,7 @@ ADD tomcat/tomcat-users.xml $CATALINA_HOME/conf/
 ADD tomcat/run.sh $CATALINA_HOME/bin/run.sh
 RUN chmod +x $CATALINA_HOME/bin/run.sh
 
-# add MySQL JDBC driver jar
+# add MySQL JDBC driver jardoc	
 ADD tomcat/mysql-connector-java-5.1.36-bin.jar $CATALINA_HOME/lib/
 ADD ../maisamo/target/maisamo-0.0.1-SNAPSHOT.war $CATALINA_HOME/webapps/
 
