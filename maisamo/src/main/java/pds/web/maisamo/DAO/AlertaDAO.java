@@ -42,7 +42,6 @@ public class AlertaDAO {
 	public void editar( Alerta alerta)
 	{
 		String sql = "UPDATE alerta SET titulo = ?, mensagem = ?, categoria = ?, tipoalerta = ? where id = ?";
-		
 		try {
 			
 			connection = conexao.abrirConexao();
