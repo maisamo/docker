@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Smart Alerta</title>
+    <title>Smart Alerta!</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -15,14 +15,15 @@
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
     <!-- Custom icon font-->
     <link rel="stylesheet" href="css/fontastic.css">
-    <!-- Google fonts - Roboto -->
+    <!-- Google fonts - Roboto
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    -->
     <!-- jQuery Circle-->
     <link rel="stylesheet" href="css/grasp_mobile_progress_circle-1.0.0.min.css">
     <!-- Custom Scrollbar-->
     <link rel="stylesheet" href="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/style.blue.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
@@ -38,15 +39,29 @@
       <div class="side-navbar-wrapper">
         <div class="sidenav-header d-flex align-items-center justify-content-center">
           <div class="sidenav-header-inner text-center"><img src="img/avatar-1.jpg" alt="person" class="img-fluid rounded-circle">
-            <h2 class="h5 text-uppercase">Seu José</h2>
+            <h2 class="h5 text-uppercase">${usuario.nome}</h2>
           </div>
           <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>S</strong><strong class="text-primary">A</strong></a></div>
         </div>
         <div class="main-menu">
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
-            <li><a href="#"> <i class="icon-home"></i><span>Home</span></a></li>
-            <li class="active"> <a href="cadastrarAlerta.jsp"><i class="icon-bill"></i><span>Cadastrar Alerta</span></a></li>
-            <li> <a href="enviarAlerta.jsp"> <i class="icon-mail"></i><span>Enviar Alerta</span></a></li>
+            <li> <a href="#"> <i class="fa fa-home" style="font-size: 18px"></i><span>Início</span></a></li>
+            <li> <a href="#alerta" data-toggle="collapse" aria-expanded="true"><i class="fa fa-bell" style="font-size: 20px"></i><span>Alerta</span>
+                <div class="arrow pull-right"><i class="fa fa-angle-down" style="font-size: 20px"></i></div></a>
+              <ul id="alerta" class="list-unstyled">
+	            <li class="active"> <a href="cadastrar_alerta.jsp#"><i class="fa fa-plus-square" style="font-size: 18px"></i><span>Cadastrar Alerta</span></a></li>
+	           	<li> <a href="enviar_alerta.jsp"> <i class="fa fa-send" style="font-size: 16px"></i><span>Enviar Alerta</span></a></li>
+	           	<li> <a href="visualizar_alertas.jsp"> <i class="fa fa-bell" style="font-size: 16px"></i><span>Ver Alertas</span></a></li>
+	           	<li> <a href="alertas_enviados.jsp"> <i class="fa fa-check-square" style="font-size: 18px"></i><span>Alertas Enviados</span></a></li>
+              </ul>
+            </li>
+            <li> <a href="#contato" data-toggle="collapse" aria-expanded="false"><i class="fa fa-address-book" style="font-size: 20px"></i><span>Contato</span>
+                <div class="arrow pull-right"><i class="fa fa-angle-down" style="font-size: 20px"></i></div></a>
+              <ul id="contato" class="collapse list-unstyled">
+                <li> <a href="adicionar_contato.jsp"> <i class="fa fa-user-plus" style="font-size: 16px"></i><span>Adicionar Contato</span></a></li>
+           		<li> <a href="visualizar_contatos.jsp"> <i class="fa fa-users" style="font-size: 16px"></i><span>Ver Contatos</span></a></li>
+              </ul>
+            </li>
           </ul>
         </div>        
       </div>
@@ -57,10 +72,10 @@
         <nav class="navbar">
           <div class="container-fluid">
             <div class="navbar-holder d-flex align-items-center justify-content-between">
-              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="#" class="navbar-brand">
-                  <div class="brand-text d-none d-md-inline-block"><span>SMART </span><strong class="text-primary">ALERTA</strong></div></a></div>
+              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="fa fa-bars" style="font-size: 25px"> </i></a><a href="#" class="navbar-brand">
+                  <div class="brand-text d-none d-md-inline-block"><strong class="text-secondary">Smart</strong><strong class="text-primary">Alerta!</strong></div></a></div>
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">                
-                <li class="nav-item"><a href="login.html" class="nav-link logout">Logout<i class="fa fa-sign-out"></i></a></li>
+                <li class="nav-item"><a href="login.html" class="nav-link logout">Sair<i class="fa fa-sign-out"></i></a></li>
               </ul>
             </div>
           </div>
@@ -69,7 +84,7 @@
       <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Início</a></li>
             <li class="breadcrumb-item active">Cadastrar Alerta</li>
           </ul>
         </div>
@@ -77,34 +92,21 @@
       <section class="forms">
         <div class="container-fluid">
           <header> 
-            <h1 class="h3 display">CADASTRAR ALERTA</h1>
+            <h1 class="h1 display">Cadastrar Alerta</h1>
           </header>
           <div class="row">            
             <div class="col-lg-12">
               <div class="card">
-                <div class="card-header d-flex align-items-center">
-                  <h2 class="h5 display">Novo Alerta</h2>
-                </div>
                 <div class="card-body">
-                  <form class="form-horizontal" id="form_alerta" action="CriarAlerta" method="post">
-                    <div class="form-group row">
-                      <label class="col-sm-2 form-control-label">Categoria</label>
-                      <div class="col-sm-10 select">
-                        <select name="categoria" class="form-control">
-                          <option></option>
-                          <option value="EXAME">EXAME</option>
-                          <option value="CONSULTA">CONSULTA</option>
-                          <option value="PROCEDIMENTO">PROCEDIMENTO</option>
-                          <option value="CANCELAMENTO">CANCELAMENTO</option>
-                        </select>
-                      </div>                      
+                  <form id="form_alerta" action="CadastrarAlerta" method="post">
+                    <div class="form-group">
+                      <label>Categoria</label>
+                      <input name="categoria" placeholder="Categoria do Alerta" class="form-control">                
                     </div>
                     <div class="line"></div>
-                    <div class="form-group row">
-                      <label class="col-sm-2 form-control-label">Titulo</label>
-                      <div class="col-sm-10 select">
-                        <input name="titulo" placeholder="Titulo" class="form-control">
-                      </div>                      
+                    <div class="form-group">
+                      <label >Titulo</label>
+                      <input name="titulo" placeholder="Titulo do Alerta" class="form-control">                  
                     </div>
                     <div class="line"></div>
                     <div id="summernote"></div>
@@ -112,9 +114,9 @@
                                        
                     <div class="line"></div>
                     <div class="form-group row">
-                      <div class="col-sm-4">
-                        <button type="submit" class="btn btn-secondary">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                      <div class="col-sm-6"></div>
+                      <div class="col-sm-6">
+                        <button type="submit" style="float: right" class="btn btn-primary">Salvar</button>
                       </div>
                     </div>
                   </form>
@@ -128,7 +130,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">
-              <p>Smart Alerta &copy; 2017-2019</p>
+              <p>Smart Alerta! &copy; 2017</p>
             </div>
             <div class="col-sm-6 text-right">
               <p>Design by <a href="#" class="external">Devops Group</a></p>

@@ -6,37 +6,37 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Conexao {
+public class ConexaoBanco {
 	/*public final String DB_ADDRESS = "jdbc:postgresql://172.16.0.43:5667/db_fundacao";
 
 	public final String DB_USER_NAME = "postgres";
 
 	public final String DB_USER_PASSWORD = "Cde#@wsxzaQ!1";*/
 	
-	public final String DB_ADDRESS = "jdbc:postgresql://localhost:5432/db_maisamo";
+	private static final String DB_ADDRESS = "jdbc:postgresql://localhost:5432/db_maisamo";
 
-	public final String DB_USER_NAME = "postgres";
+	private static final String DB_USER_NAME = "postgres";
 
-	public final String DB_USER_PASSWORD = "postgres";
+	private static final String DB_USER_PASSWORD = "wagner";
 
-	public Connection abrirConexao() 
+	public static Connection abrirConexao() 
 	{
 		Connection connection;
 
-	try {
-		Class.forName("org.postgresql.Driver");
-
-		connection = DriverManager.getConnection(DB_ADDRESS, DB_USER_NAME, DB_USER_PASSWORD);
-			
-		return connection;
-			
-	} catch (ClassNotFoundException e) {
-			
-		e.printStackTrace();
-			
-	} catch (SQLException e) {
-
-	}
+		try {
+			Class.forName("org.postgresql.Driver");
+	
+			connection = DriverManager.getConnection(DB_ADDRESS, DB_USER_NAME, DB_USER_PASSWORD);
+				
+			return connection;
+				
+		} catch (ClassNotFoundException e) {
+				
+			e.printStackTrace();
+				
+		} catch (SQLException e) {
+	
+		}
 
 		return null;
 	}
@@ -45,7 +45,7 @@ public class Conexao {
     {
         try 
         {
-            conexao.close();
+        	if (conexao != null) conexao.close();
         } 
         catch (SQLException ex) 
         {
@@ -58,7 +58,7 @@ public class Conexao {
 	{
         try 
         {
-            instrucao.close();
+        	if (instrucao != null) instrucao.close();
         }
         catch (SQLException e) 
         {
@@ -71,7 +71,7 @@ public class Conexao {
     {
         try 
         {
-            resultados.close();
+            if (resultados != null) resultados.close();
         }
         
         catch (SQLException e) 

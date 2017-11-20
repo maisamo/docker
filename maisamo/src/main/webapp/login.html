@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bootstrap Dashboard by Bootstrapious.com</title>
+    <title>Smart Alerta!</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -16,14 +14,15 @@
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
     <!-- Custom icon font-->
     <link rel="stylesheet" href="css/fontastic.css">
-    <!-- Google fonts - Roboto -->
+    <!-- Google fonts - Roboto 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    -->
     <!-- jQuery Circle-->
     <link rel="stylesheet" href="css/grasp_mobile_progress_circle-1.0.0.min.css">
     <!-- Custom Scrollbar-->
     <link rel="stylesheet" href="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/style.blue.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
@@ -37,35 +36,48 @@
       <div class="container">
         <div class="form-outer text-center d-flex align-items-center">
           <div class="form-inner">
-            <div class="logo text-uppercase"><span>Dash</span><strong class="text-primary">Express</strong></div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-            <form id="register-form">
+            <div class="logo text-uppercase"><span>Smart</span><strong class="text-primary">Alerta!</strong></div>
+            <p></p>
+            <form id="login-form" method="post" action="FazerLogin">
               <div class="form-group">
-                <label for="register-username" class="label-custom">User Name</label>
-                <input id="register-username" type="text" name="registerUsername" required>
-              </div>
-              <div class="form-group">
-                <label for="register-email" class="label-custom">Email Address      </label>
-                <input id="register-email" type="email" name="registerEmail" required>
+                <label for="login-username" class="label-custom">Usuário</label>
+                <input id="login-username" type="text" name="loginUsuario" required="">
               </div>
               <div class="form-group">
-                <label for="register-passowrd" class="label-custom">password        </label>
-                <input id="register-passowrd" type="password" name="registerPassword" required>
+                <label for="login-password" class="label-custom">Senha</label>
+                <input id="login-password" type="password" name="loginSenha" required="">
               </div>
-              <div class="terms-conditions d-flex justify-content-center">
-                <input id="license" type="checkbox" class="form-control-custom">
-                <label for="license">Agree the terms and policy</label>
-              </div>
-              <input id="register" type="submit" value="Register" class="btn btn-primary">
-            </form><small>Already have an account? </small><a href="login.html" class="signup">Login</a>
+              <button id="login" type="submit" class="btn btn-primary">Entrar</button>
+              <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+            </form>
+            <a href="#" class="forgot-pass">Esqueceu a senha?</a>
+            <small>Não tem uma conta, ainda? </small><a href="registro.html" class="signup">Registrar-se</a>
           </div>
           <div class="copyrights text-center">
-            <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
+            <p>Design by <a href="https://bootstrapious.com" target="_blank" class="external">DevOps Group</a></p>
             <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
           </div>
         </div>
       </div>
     </div>
+    <!-- Modal-->
+  	<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+		<div role="document" class="modal-dialog">
+	  		<div class="modal-content">
+	    		<div class="modal-header">
+	      			<h4 id="exampleModalLabel" class="modal-title"><strong class="text-danger">Erro!</strong></h4>
+	      			<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+	    		</div>
+	    		<div class="modal-body">
+	      			<p>Não foi possível realizar Login.</p>
+	      			<p><strong class="text-warning">Motivo:</strong> <u>Usuário</u> ou <u>Senha</u> incorretos.</p>
+	      		</div>
+	    		<div class="modal-footer">
+	      			<button type="button" data-dismiss="modal" class="btn btn-secondary">Fechar</button>
+	    		</div>
+	  		</div>
+		</div>
+  	</div>
     <!-- Javascript files-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"> </script>

@@ -3,10 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bootstrap Dashboard by Bootstrapious.com</title>
+    <title>Smart Alerta!</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -16,14 +16,15 @@
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
     <!-- Custom icon font-->
     <link rel="stylesheet" href="css/fontastic.css">
-    <!-- Google fonts - Roboto -->
+    <!-- Google fonts - Roboto 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    -->s
     <!-- jQuery Circle-->
     <link rel="stylesheet" href="css/grasp_mobile_progress_circle-1.0.0.min.css">
     <!-- Custom Scrollbar-->
     <link rel="stylesheet" href="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/style.blue.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
@@ -37,22 +38,34 @@
       <div class="container">
         <div class="form-outer text-center d-flex align-items-center">
           <div class="form-inner">
-            <div class="logo text-uppercase"><span>Bootstrap</span><strong class="text-primary">Dashboard</strong></div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-            <form id="login-form" method="post">
+            <div class="logo text-uppercase"><span>Smart</span><strong class="text-primary">Alerta!</strong></div>
+            <p></p>
+            <form id="register-form" method="post" action="RegistrarUsuario">
               <div class="form-group">
-                <label for="login-username" class="label-custom">User Name</label>
-                <input id="login-username" type="text" name="loginUsername" required="">
+                <label for="register-name" class="label-custom">Nome de Apresentação<sup class="text-danger">*</sup></label>
+                <input id="register-name" type="text" name="registroNome" required>
               </div>
               <div class="form-group">
-                <label for="login-password" class="label-custom">Password</label>
-                <input id="login-password" type="password" name="loginPassword" required="">
-              </div><a id="login" href="index.html" class="btn btn-primary">Login</a>
-              <!-- This should be submit button but I replaced it with <a> for demo purposes-->
-            </form><a href="#" class="forgot-pass">Forgot Password?</a><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+                <label for="register-email" class="label-custom"><sup class="text-warning">(Opcional)</sup><br/>Email&nbsp;</label>
+                <input id="register-email" type="email" name="registroEmail">
+              </div>
+              <div class="form-group">
+                <label for="register-username" class="label-custom">Usuário<sup class="text-danger">*</sup></label>
+                <input id="register-username" type="text" name="registroUsuario" required>
+              </div>
+              <div class="form-group">
+                <label for="register-passowrd" class="label-custom">Senha<sup class="text-danger">*</sup></label>
+                <input id="register-passowrd" type="password" name="registroSenha" required>
+              </div>
+              <div class="terms-conditions d-flex justify-content-center">
+                <input id="license" type="checkbox" class="form-control-custom">
+                <label for="license">Concordar com termos e condições</label>
+              </div><br/>
+              <button id="register" type="submit" class="btn btn-primary">Registrar</button>
+            </form><small>Já tem uma conta? </small><a href="login.html" class="signup">Fazer Login</a>
           </div>
           <div class="copyrights text-center">
-            <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
+            <p>Design by <a href="https://bootstrapious.com" target="_blank" class="external">DevOps Group</a></p>
             <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
           </div>
         </div>
