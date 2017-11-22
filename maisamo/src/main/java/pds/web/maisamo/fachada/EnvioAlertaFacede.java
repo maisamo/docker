@@ -18,4 +18,7 @@ public class EnvioAlertaFacede {
 	public List<EnvioAlerta> listar(Usuario usuario) {
 		return eadao.listar(usuario);
 	}
+	public EnvioAlerta procurarPorId(Long id) {
+		return eadao.procurarPorId(id);
+	}
 }

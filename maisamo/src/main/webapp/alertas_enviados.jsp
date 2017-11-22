@@ -57,15 +57,15 @@
               <ul id="alerta" class="list-unstyled">
 	            <li> <a href="cadastrar_alerta.jsp#"><i class="fa fa-plus-square" style="font-size: 18px"></i><span>Cadastrar Alerta</span></a></li>
 	           	<li> <a href="enviar_alerta.jsp"> <i class="fa fa-send" style="font-size: 16px"></i><span>Enviar Alerta</span></a></li>
-	           	<li> <a href="visualizar_alertas.jsp"> <i class="fa fa-bell" style="font-size: 16px"></i><span>Ver Alertas</span></a></li>
-	           	<li class="active"> <a href="alertas_enviados.jsp"> <i class="fa fa-check-square" style="font-size: 18px"></i><span>Alertas Enviados</span></a></li>
+	           	<li> <a href="VerAlertas"> <i class="fa fa-bell" style="font-size: 16px"></i><span>Ver Alertas</span></a></li>
+	           	<li class="active"> <a href="AlertasEnviados#"> <i class="fa fa-check-square" style="font-size: 18px"></i><span>Alertas Enviados</span></a></li>
               </ul>
             </li>
             <li> <a href="#contato" data-toggle="collapse" aria-expanded="false"><i class="fa fa-address-book" style="font-size: 20px"></i><span>Contato</span>
                 <div class="arrow pull-right"><i class="fa fa-angle-down" style="font-size: 20px"></i></div></a>
               <ul id="contato" class="collapse list-unstyled">
                 <li> <a href="adicionar_contato.jsp"> <i class="fa fa-user-plus" style="font-size: 16px"></i><span>Adicionar Contato</span></a></li>
-           		<li> <a href="visualizar_contatos.jsp"> <i class="fa fa-users" style="font-size: 16px"></i><span>Ver Contatos</span></a></li>
+           		<li> <a href="VerContatos"> <i class="fa fa-users" style="font-size: 16px"></i><span>Ver Contatos</span></a></li>
               </ul>
             </li>
           </ul>
@@ -124,12 +124,12 @@
                       </tr>
                     </tfoot>
                     <tbody>
-                    <c:forEach var="envio_alerta" items="${alertas_enviados}">
+                    <c:forEach var="alerta_enviado" items="${alertas_enviados}">
                       <tr>
-                        <td>${envio_alerta.datahora_envio}</td>
-                        <td>${envio_alerta.alerta.categoria}</td>
-                        <td>${envio_alerta.alerta.titulo}</td>
-                        <td><button name="${envio_alerta.id}" type="button" class="btn btn-outline-info">Contatos</button></td>
+                        <td>${alerta_enviado.datahora_envio}</td>
+                        <td>${alerta_enviado.alerta.categoria}</td>
+                        <td>${alerta_enviado.alerta.titulo}</td>
+                        <td><button name="${envio_alerta.id}" type="button" onclick="window.location.href='VerContatosPorEnvio'" class="btn btn-outline-info">Contatos</button></td>
                         <td><button name="${envio_alerta.id}" type="button" class="btn btn-outline-danger">Excluir</button></td>
                       </tr>
                     </c:forEach>

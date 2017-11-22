@@ -97,4 +97,34 @@ public class EnvioAlertaDAO {
 		}
 		return lista;
 	}
+	
+	public EnvioAlerta procurarPorId(Long id) {
+		String sql = "DELETE FROM envio_alerta where id=?";
+		
+		EnvioAlerta envio_alerta = null;
+		
+		try {
+			conexao = ConexaoBanco.abrirConexao();
+			preparador = conexao.prepareStatement(sql);
+			preparador.setLong(1, id);
+			rs = preparador.executeQuery();
+			
+			if (rs.next()) {
+				envio_alerta = new EnvioAlerta();
+				envio_alerta.setId(rs.getLong("id"));
+				envio_alerta.setDataHoraEnvio(
+						LocalDateTime.of(
+								rs.getDate("data_envio").toLocalDate(), 
+								rs.getTime("hora_envio").toLocalTime()
+								)
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();		
+		} finally {
+			ConexaoBanco.fecharInstrucao(preparador);
+			ConexaoBanco.fecharConexao(conexao);
+		}
+		return envio_alerta;
+	}
 }

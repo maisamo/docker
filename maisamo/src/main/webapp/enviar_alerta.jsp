@@ -61,15 +61,15 @@
               <ul id="alerta" class="list-unstyled">
 	            <li> <a href="cadastrar_alerta.jsp"><i class="fa fa-plus-square" style="font-size: 18px"></i><span>Cadastrar Alerta</span></a></li>
 	           	<li class="active"> <a href="enviar_alerta.jsp#"> <i class="fa fa-send" style="font-size: 16px"></i><span>Enviar Alerta</span></a></li>
-	           	<li> <a href="visualizar_alertas.jsp"> <i class="fa fa-bell" style="font-size: 16px"></i><span>Ver Alertas</span></a></li>
-	           	<li> <a href="alertas_enviados.jsp"> <i class="fa fa-check-square" style="font-size: 18px"></i><span>Alertas Enviados</span></a></li>
+	           	<li> <a href="VerAlertas"> <i class="fa fa-bell" style="font-size: 16px"></i><span>Ver Alertas</span></a></li>
+	           	<li> <a href="AlertasEnviados"> <i class="fa fa-check-square" style="font-size: 18px"></i><span>Alertas Enviados</span></a></li>
               </ul>
             </li>
             <li> <a href="#contato" data-toggle="collapse" aria-expanded="false"><i class="fa fa-address-book" style="font-size: 20px"></i><span>Contato</span>
                 <div class="arrow pull-right"><i class="fa fa-angle-down" style="font-size: 20px"></i></div></a>
               <ul id="contato" class="collapse list-unstyled">
                 <li> <a href="adicionar_contato.jsp"> <i class="fa fa-user-plus" style="font-size: 16px"></i><span>Adicionar Contato</span></a></li>
-           		<li> <a href="visualizar_contatos.jsp"> <i class="fa fa-users" style="font-size: 16px"></i><span>Ver Contatos</span></a></li>
+           		<li> <a href="VerContatos"> <i class="fa fa-users" style="font-size: 16px"></i><span>Ver Contatos</span></a></li>
               </ul>
             </li>
           </ul>
@@ -171,7 +171,7 @@
 			                      <td>${contato.fone}</td>
 			                      <td>
 								  	<div class="i-checks">
-			                          <input id="checkboxCustom${id.count}" type="checkbox" value="" style="transform:scale(2)" class="form-control-custom">
+			                          <input id="checkboxCustom${id.count}" type="checkbox" value="${contato.id}" class="form-control-custom">
 			                          <label for="checkboxCustom${id.count}">Selecionar</label>
 			                        </div>
 								  </td>

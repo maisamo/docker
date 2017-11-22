@@ -9,6 +9,8 @@ public class EnvioAlerta {
 	private LocalDateTime datahora_envio;
 	private Alerta alerta;
 	
+	public EnvioAlerta() {}
+	
 	public EnvioAlerta(Alerta alerta) {
 		this.alerta = alerta;
 	}

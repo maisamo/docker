@@ -56,15 +56,15 @@
               <ul id="alerta" class="collapse list-unstyled">
 	            <li> <a href="cadastrar_alerta.jsp"><i class="fa fa-plus-square" style="font-size: 18px"></i><span>Cadastrar Alerta</span></a></li>
 	           	<li> <a href="enviar_alerta.jsp"> <i class="fa fa-send" style="font-size: 16px"></i><span>Enviar Alerta</span></a></li>
-	           	<li> <a href="visualizar_alertas.jsp"> <i class="fa fa-bell" style="font-size: 16px"></i><span>Ver Alertas</span></a></li>
-	           	<li> <a href="alertas_enviados.jsp"> <i class="fa fa-check-square" style="font-size: 18px"></i><span>Alertas Enviados</span></a></li>
+	           	<li> <a href="VerAlertas"> <i class="fa fa-bell" style="font-size: 16px"></i><span>Ver Alertas</span></a></li>
+	           	<li> <a href="AlertasEnviados"> <i class="fa fa-check-square" style="font-size: 18px"></i><span>Alertas Enviados</span></a></li>
               </ul>
             </li>
             <li> <a href="#contato" data-toggle="collapse" aria-expanded="true"><i class="fa fa-address-book" style="font-size: 20px"></i><span>Contato</span>
                 <div class="arrow pull-right"><i class="fa fa-angle-down" style="font-size: 20px"></i></div></a>
               <ul id="contato" class="list-unstyled">
                 <li> <a href="adicionar_contato.jsp"> <i class="fa fa-user-plus" style="font-size: 16px"></i><span>Adicionar Contato</span></a></li>
-           		<li class="active"> <a href="visualizar_contatos.jsp#"> <i class="fa fa-users" style="font-size: 16px"></i><span>Ver Contatos</span></a></li>
+           		<li class="active"> <a href="VerContatos#"> <i class="fa fa-users" style="font-size: 16px"></i><span>Ver Contatos</span></a></li>
               </ul>
             </li>
           </ul>
@@ -160,7 +160,7 @@
                       <div class="line"></div>
                       <div class="form-group">       
                         <label>Telefone</label>
-                        <input name="foneContato" type="text" value="${editar_contato.fone}" class="form-control">
+                        <input id="fone" name="foneContato" type="text" value="${editar_contato.fone}" class="form-control">
                       </div>
                     </form>
                   </div>
@@ -292,6 +292,12 @@
             }
           }
         });
+      });
+    </script>
+    <script>
+   	  document.getElementById('fone').addEventListener('input', function (e) {
+        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+    	e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
       });
     </script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
