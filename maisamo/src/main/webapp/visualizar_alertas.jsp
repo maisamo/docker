@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:if test="${empty sessionScope.usuario}">
+	<c:redirect url="/acesso_negado.jsp" context="/maisamo"/>
+</c:if>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,7 +37,7 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-        
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
   </head>
   <body>
     <!-- Side Navbar -->
@@ -94,36 +100,128 @@
           <header> 
             <h1 class="h1 display">Alertas</h1>
           </header>
-          <div class="row">            
+          <div class="row">  
             <div class="col-lg-12">
               <div class="card">
-                <div class="card-body">
-                  <form id="form_alerta" action="CriarAlerta" method="post">
-                    <div class="form-group">
-                      <label>Categoria</label>
-                      <input name="categoria" placeholder="Categoria do Alerta" class="form-control">  
-                      <%-- 
-                      <select name="categoria" class="form-control">
-                        <option></option>
-                        <option value="EXAME">EXAME</option>
-                        <option value="CONSULTA">CONSULTA</option>
-                        <option value="PROCEDIMENTO">PROCEDIMENTO</option>
-                        <option value="CANCELAMENTO">CANCELAMENTO</option>
-                      </select>
-                      --%>                 
-                    </div>
-                    <div class="line"></div>
-                    <div class="form-group">
-                      <label >Titulo</label>
-                      <input name="titulo" placeholder="Titulo do Alerta" class="form-control">                  
-                    </div>
-                    <div class="line"></div>
-                    <div id="summernote"></div>
-                    <input name="mensagem" type="hidden">
-                  </form>
+                <div class="card-body">                  
+                  <table id="example" class="display" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>Categoria</th>
+                        <th>Título</th>
+                        <th>Mensagem</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <th>Categoria</th>
+                        <th>Título</th>
+                        <th>Mensagem</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+                      </tr>
+                    </tfoot>
+                    <tbody>
+                    <c:forEach var="alerta" items="${alertas}">
+                      <tr>
+                        <td>${alerta.categoria}</td>
+                        <td>${alerta.titulo}</td>
+                        <td>${alerta.mensagem}</td>
+                        <td><button name="${alerta.id}" type="button" data-toggle="modal" data-target="#editar_modal" class="btn btn-outline-info">Editar</button></td>
+                        <td><button name="${alerta.id}" type="button" data-toggle="modal" data-target="#excluir_modal" class="btn btn-outline-danger">Excluir</button></td>
+                      </tr>
+                    </c:forEach>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
+            
+            <!-- editar Modal-->
+            <div id="editar_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+              <div role="document" class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 id="exampleModalLabel" class="modal-title text-primary"><strong class="text-primary">Editar Alerta</strong></h3>
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body" >
+                    <form method="post" action="EditarAlerta">
+                      <div class="form-group">
+                        <label>Categoria</label>
+                        <input name="categoria" type="text" value="${editar_alerta.categoria}" class="form-control">
+                      </div>
+                      <div class="line"></div>
+                      <div class="form-group">       
+                        <label>Título</label>
+                        <input name="titulo" type="text" value="${editar_alerta.titulo}" class="form-control">
+                      </div>     
+                      <div class="line"></div>
+	                  <label>Mensagem</label>
+	                  <div id="summernote">${editar_alerta.mensagem}</div>
+	                  <input name="mensagem" type="hidden">
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+	               	<button type="button" style="float:left" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>  
+	                <button type="submit" style="float:right" class="btn btn-primary">Salvar</button>
+                  </div>
+                </div>
+              </div>
+            </div>  
+            <!-- atualizado Modal-->
+            <div id="excluir_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+              <div role="document" class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 id="exampleModalLabel" class="modal-title"><strong class="text-success">Alerta atualizado!</strong></h3>
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                  	<h4>As mudanças foram salvas.</h4>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" style="float:left" data-dismiss="modal" class="btn btn-secondary">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            
+            <!-- excluir Modal-->
+            <div id="excluir_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+              <div role="document" class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 id="exampleModalLabel" class="modal-title"><strong class="text-danger">Excluir Alerta</strong></h3>
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                  	<h4>Você está prestes a excluir este <b>Alerta</b>.
+	      			Esta ação não poderá ser revertida, deseja prosseguir?</h4>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" style="float:left" data-dismiss="modal" class="btn btn-secondary">Não</button>
+                    <button type="button" onclick="window.location.href='ExcluirAlerta'" style="float:right" class="btn btn-primary">Sim</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- excluído Modal-->
+            <div id="excluido_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+              <div role="document" class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 id="exampleModalLabel" class="modal-title"><strong class="text-primary">Alerta Excluído</strong></h3>
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" style="float:right" data-dismiss="modal" class="btn btn-secondary">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div>     
           </div>
         </div>
       </section>
@@ -134,7 +232,7 @@
               <p>Smart Alerta! &copy; 2017</p>
             </div>
             <div class="col-sm-6 text-right">
-              <p>Design by <a href="#" class="external">Devops Group</a></p>
+              <p>Design by <a href="#" class="external">DevOps Group</a></p>
               <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
             </div>
           </div>
@@ -150,13 +248,12 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/front.js"></script>
-    
-    
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote-bs4.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote-bs4.js"></script>
     <script>
       $('#summernote').summernote({
-        height: 300,                 // set editor height
+        height: 200,                 // set editor height
         minHeight: null,             // set minimum height of editor
         maxHeight: null,             // set maximum height of editor
         focus: true                  // set focus to editable area after initializing summernote
@@ -165,7 +262,36 @@
     	  $('input[name="mensagem"]').val($('#summernote').summernote('code'));
     	});
       $('input[name="mensagem"]').val($('#summernote').summernote('code'));
-    </script>     
+    </script> 
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable({
+          "language": {
+            "sEmptyTable": "Nenhum registro encontrado",
+            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ".",
+            "sLengthMenu": "_MENU_ resultados por página",
+            "sLoadingRecords": "Carregando...",
+            "sProcessing": "Processando...",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sSearch": "Pesquisar",
+            "oPaginate": {
+              "sNext": "Próximo",
+              "sPrevious": "Anterior",
+              "sFirst": "Primeiro",
+              "sLast": "Último"
+            },
+            "oAria": {
+              "sSortAscending": ": Ordenar colunas de forma ascendente",
+              "sSortDescending": ": Ordenar colunas de forma descendente"
+            }
+          }
+        });
+      });
+    </script>    
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
   </body>
 </html>

@@ -1,5 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:if test="${empty sessionScope.usuario}">
+	<c:redirect url="/acesso_negado.jsp" context="/maisamo"/>
+</c:if>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,10 +37,11 @@
     <link rel="shortcut icon" href="favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <link rel="stylesheet" type="text/css" href="framework/demo-framework.css" />
-    <script src="https://code.angularjs.org/1.2.9/angular.js"></script>
-    <script src="js/angular-drag-and-drop-lists.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]
+        <link rel="stylesheet" type="text/css" href="framework/demo-framework.css" />
+    	<script src="https://code.angularjs.org/1.2.9/angular.js"></script>
+    	<script src="js/angular-drag-and-drop-lists.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">   
   </head>
   <body>
     <!-- Side Navbar -->
@@ -108,30 +114,22 @@
                   <form>
                     <div class="form-group">
                       <label>Categoria</label>                  
-                      <select name="categoria" class="form-control" onchange="javascript:document.form-cat.submit()">
-                       	<option></option>
-	                      <%
-                       		String categoria;
-                      		for (int i = 0; i < 5; ++i) {
-                      			categoria = "CATEGORIA " + i;
-                      			out.println("<option value=\"" + categoria + "\">" + categoria + "</option>");
-                      		}
-	                      %>
+                      <select name="categoria" class="form-control" onchange="window.location.href='ListarPorCategoria'">
+                      	<option></option>
+                      <c:forEach var="alerta" items="${alertas}">
+                       	<option value="${alerta.categoria}">${alerta.categoria}</option>
+                      </c:forEach>
                  	  </select>                
                     </div>
                     <div class="line"></div>
                     <div class="form-group">       
                       <label>Título</label>
                       <select name="titulo" class="form-control">
-                          <option></option>
-                          	<%
-                          		String titulo;
-	                			for (int i = 0; i < 10; ++i) {
-	                				titulo = "TÍTULO " + i;
-	                          		out.println("<option value=\"" + titulo + "\">" + titulo + "</option>");
-	                			}
-	                        %>
-                        </select>
+                        <option></option>
+                      <c:forEach var="titulo" items="${titulos}">
+                    	<option value="${titulo}">${titulo}</option>
+                      </c:forEach>
+                      </select>
                     </div>                    
                   </form>
                 </div>
@@ -145,25 +143,45 @@
                 <div class="card-body">
                   <form class="form-horizontal" method="post" action="EnviarAlerta">
                     <div class="form-group row">            
-                      <div class="col-sm-12 select">
-                        <div ng-app="demo">
-                          <div ng-controller="DemoController" class="row">
-                            <div ng-repeat="list in model" class="col-sm-6">
-                              <div class="panel panel-info">
-                                <div class="panel-heading"><h3 class="panel-title">List {{$index+1}}</h3></div>
-                                <div class="panel-body">
-                                  <ul dnd-list dnd-drop="callback({targetList: list, targetIndex: index})">
-                                    <li ng-repeat="item in list"
-                                        dnd-draggable="null" dnd-callback="onDrop(list, $index, targetList, targetIndex)">
-                                      {{item.labelFunc($index)}}
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>                                               
-                      </div>                      
+                      <div class="col-lg-12">
+			            <div class="card">
+			              <div class="card-body">                  
+			                <table id="example" class="display" cellspacing="0" width="100%">
+			                  <thead>
+			                    <tr>
+			                      <th>Nome</th>
+			                      <th>E-mail</th>
+			                      <th>Telefone</th>
+			                      <th>Selecionar</th>
+			                    </tr>
+			                  </thead>
+			                  <tfoot>
+			                    <tr>
+			                      <th>Nome</th>
+			                      <th>E-mail</th>
+			                      <th>Telefone</th>
+			                      <th>Selecionar</th>
+			                    </tr>
+			                  </tfoot>
+			                  <tbody>
+			                  <c:forEach var="contato" items="${contatos}" varStatus="id">
+			                    <tr>
+			                      <td>${contato.nome}</td>
+			                      <td>${contato.email}</td>
+			                      <td>${contato.fone}</td>
+			                      <td>
+								  	<div class="i-checks">
+			                          <input id="checkboxCustom${id.count}" type="checkbox" value="" style="transform:scale(2)" class="form-control-custom">
+			                          <label for="checkboxCustom${id.count}">Selecionar</label>
+			                        </div>
+								  </td>
+			                    </tr>
+			                  </c:forEach>
+			                  </tbody>
+			                </table>
+			              </div>
+			            </div>
+			          </div>                    
                     </div>                                       
                     <div class="line"></div>
                     <div class="form-group row">
@@ -201,7 +219,37 @@
     <script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/front.js"></script>    
+    <script src="js/front.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable({
+          "language": {
+            "sEmptyTable": "Nenhum registro encontrado",
+            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ".",
+            "sLengthMenu": "_MENU_ resultados por página",
+            "sLoadingRecords": "Carregando...",
+            "sProcessing": "Processando...",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sSearch": "Pesquisar",
+            "oPaginate": {
+              "sNext": "Próximo",
+              "sPrevious": "Anterior",
+              "sFirst": "Primeiro",
+              "sLast": "Último"
+            },
+            "oAria": {
+              "sSortAscending": ": Ordenar colunas de forma ascendente",
+              "sSortDescending": ": Ordenar colunas de forma descendente"
+            }
+          }
+        });
+      });
+    </script>    
     <!-- angular is the only dependency! -->
     
     <!-- <script src="js/angular-drag-and-drop-lists.js"></script> -->

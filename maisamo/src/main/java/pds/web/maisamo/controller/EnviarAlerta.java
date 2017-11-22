@@ -32,11 +32,12 @@ public class EnviarAlerta extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		verificarUsuario(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		verificarUsuario(request, response);
+		
 		HttpSession sessao = request.getSession(true);
 		Usuario usuario = (Usuario) sessao.getAttribute("usuario");
 		String[] contatos = request.getParameterValues("enviarPara");
@@ -46,21 +47,22 @@ public class EnviarAlerta extends HttpServlet {
 		//pagina.addParam("&titulo=" + alerta.getTitulo());
 		//pagina.addParam("&categoria=" + alerta.getCategoria());
 		//pagina.addParam("&mensagem=" + alerta.getMensagem());
-		String nomeFrom = "Salud!";
+		String nomeFrom = usuario.getNome();
+		String emailFrom = usuario.getEmail();
 		String nomeTo = request.getParameter("nome");
-		String emailFrom = "nao_responder@salud.com.br";
+		
 		String emailTo = request.getParameter("email");
 		String foneTo = request.getParameter("telefone");
 		String mensagem = request.getParameter("mensagem");
 		String assunto = request.getParameter("tipo_alerta");
 		String url = "https://www.youtube.com/";
-		
-		nomeTo = new String(nomeTo.getBytes("utf-8"), "UTF-8");
-		assunto = new String(assunto.getBytes("utf-8"), "UTF-8");
-		mensagem = new String(mensagem.getBytes("utf-8"), "utf-8");
 		Enviador env = new Enviador();
 		env.enviarEmail();
-		response.sendRedirect("enviarAlerta.jsp");
+		response.sendRedirect("enviar_alerta.jsp");
 	}
-
+	
+	private void verificarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Object usuario = request.getSession().getAttribute("usuario");
+		if (usuario == null) response.sendRedirect("acesso_negado.jsp");
+	}
 }

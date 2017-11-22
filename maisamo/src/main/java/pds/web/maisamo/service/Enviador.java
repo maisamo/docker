@@ -106,7 +106,7 @@ public class Enviador {
 							"			<div class=\"msgBody\">" + 
 							"				<h1>Título do alerta</h1>" + 
 							"				<hr>" + 
-							"				<p>" + mensagem + "</p>" + 
+											mensagem +
 							"				<p>" + 
 							"					Para mais detalhes, clique sobre o link a seguir. <a href=\"" + url + "\">http://bit.ly/2j3oS9G</a>" + 
 							"				</p>" + 

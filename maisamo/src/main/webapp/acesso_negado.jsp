@@ -61,7 +61,7 @@
                   </h3>
                   <div class="line"></div>
                   <h4 class="h4 display">
-                     Tente <a href="login.html"><strong class="text-primary">Fazer Login</strong></a> para resolver o problema.
+                     Tente <a href="login.jsp"><strong class="text-primary">Fazer Login</strong></a> para resolver o problema.
                   </h4>
                 </div>
               </div>

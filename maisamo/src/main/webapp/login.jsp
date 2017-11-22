@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,7 +38,7 @@
       <div class="container">
         <div class="form-outer text-center d-flex align-items-center">
           <div class="form-inner">
-            <div class="logo text-uppercase"><span>Smart</span><strong class="text-primary">Alerta!</strong></div>
+            <div class="logo text-uppercase"><strong class="text-secondary">Smart</strong><strong class="text-primary">Alerta!</strong></div>
             <p></p>
             <form id="login-form" method="post" action="FazerLogin">
               <div class="form-group">
@@ -46,12 +48,12 @@
               <div class="form-group">
                 <label for="login-password" class="label-custom">Senha</label>
                 <input id="login-password" type="password" name="loginSenha" required="">
-              </div>
+              </div><br/>
               <button id="login" type="submit" class="btn btn-primary">Entrar</button>
               <!-- This should be submit button but I replaced it with <a> for demo purposes-->
             </form>
-            <a href="#" class="forgot-pass">Esqueceu a senha?</a>
-            <small>Não tem uma conta, ainda? </small><a href="registro.html" class="signup">Registrar-se</a>
+            <!-- <a href="#" class="forgot-pass">Esqueceu a senha?</a>  -->
+            <small>Não tem uma conta, ainda? </small><a href="registro.jsp" class="signup">Registrar-se</a>
           </div>
           <div class="copyrights text-center">
             <p>Design by <a href="https://bootstrapious.com" target="_blank" class="external">DevOps Group</a></p>
@@ -61,16 +63,16 @@
       </div>
     </div>
     <!-- Modal-->
-  	<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+  	<div id="invalido_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-center">
 		<div role="document" class="modal-dialog">
 	  		<div class="modal-content">
 	    		<div class="modal-header">
-	      			<h4 id="exampleModalLabel" class="modal-title"><strong class="text-danger">Erro!</strong></h4>
-	      			<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+	      			<h4 id="exampleModalLabel" class="modal-title"><strong class="text-danger">Ops!</strong></h4>
+	      			<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
 	    		</div>
 	    		<div class="modal-body">
-	      			<p>Não foi possível realizar Login.</p>
-	      			<p><strong class="text-warning">Motivo:</strong> <u>Usuário</u> ou <u>Senha</u> incorretos.</p>
+	      			<p><strong class="text-danger">Não foi possível realizar Login.</strong></p>
+	      			<p><strong class="text-warning">Motivo:</strong> <b>Usuário</b> ou <b>Senha</b> incorretos.</p>
 	      		</div>
 	    		<div class="modal-footer">
 	      			<button type="button" data-dismiss="modal" class="btn btn-secondary">Fechar</button>
@@ -97,5 +99,12 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
+    <c:if test="${valido == false}">
+	    <script>
+			$(document).ready(function(){
+		        $("#invalido_modal").modal();
+			});
+		</script>
+	</c:if>
   </body>
 </html>

@@ -37,17 +37,10 @@ public class AlertaDAO {
 		}
 		return resultado;
 	}
-<<<<<<< HEAD
-
+	
 	public boolean atualizar(Alerta alerta) {
 		String sql = "UPDATE alerta SET titulo = ?, mensagem = ?, categoria = ? where id = ?";
-
-=======
-	
-	public void editar( Alerta alerta)
-	{
-		String sql = "UPDATE alerta SET titulo = ?, mensagem = ?, categoria = ?, tipoalerta = ? where id = ?";
->>>>>>> 7c24a468834326c0a7d1a548ed5c9895f597d461
+		
 		try {
 			conexao = ConexaoBanco.abrirConexao();
 			preparador = conexao.prepareStatement(sql);

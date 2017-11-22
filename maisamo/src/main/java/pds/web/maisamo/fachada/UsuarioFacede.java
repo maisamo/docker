@@ -20,11 +20,8 @@ public class UsuarioFacede {
 	public List<Usuario> listar() {
 		return udao.listar();
 	}
-	public boolean procurarNome(String nome) {
-		return udao.procurarNome(nome);
-	}
-	public boolean procurarLogin(String login) {
-		return udao.procurarLogin(login);
+	public boolean procurar(String valor, String coluna) {
+		return udao.procurar(valor, coluna);
 	}
 	public Usuario autenticar(String login, String senha) {
 		return udao.autenticar(login, senha);

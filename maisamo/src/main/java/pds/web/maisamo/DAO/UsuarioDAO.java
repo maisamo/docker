@@ -110,35 +110,13 @@ public class UsuarioDAO {
 		return lista;
 	}
 	
-	public boolean procurarNome(String nome) {
-		String sql = "SELECT * FROM usuario WHERE nome = ?";
+	public boolean procurar(String valor, String coluna) {
+		String sql = "SELECT * FROM usuario WHERE " + coluna + " = ?";
 		
 		try {
 			conexao = ConexaoBanco.abrirConexao();
 			preparador = conexao.prepareStatement(sql);
-			preparador.setString(1, nome);
-			
-			rs = preparador.executeQuery();
-			
-			if (rs.next()) resultado = true;
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			ConexaoBanco.fecharResultSet(rs);
-			ConexaoBanco.fecharInstrucao(preparador);
-			ConexaoBanco.fecharConexao(conexao);
-		}
-		return resultado;
-	}
-	
-	public boolean procurarLogin(String login) {
-		String sql = "SELECT * FROM usuario WHERE login = ?";
-		
-		try {
-			conexao = ConexaoBanco.abrirConexao();
-			preparador = conexao.prepareStatement(sql);
-			preparador.setString(1, login);
+			preparador.setString(1, valor);
 			
 			rs = preparador.executeQuery();
 			

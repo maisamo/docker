@@ -13,7 +13,7 @@ import pds.web.maisamo.model.Alerta;
 import pds.web.maisamo.model.Usuario;
 
 
-@WebServlet("/CriarAlerta")
+@WebServlet("/CadastrarAlerta")
 public class CadastrarAlerta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -24,10 +24,12 @@ public class CadastrarAlerta extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		verificarUsuario(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		verificarUsuario(request, response);
+		
 		HttpSession sessao = request.getSession(true);
 		boolean valido = true;
 		
@@ -44,10 +46,13 @@ public class CadastrarAlerta extends HttpServlet {
 			a.setCategoria(categoria);
 			a.setMensagem(mensagem);
 			af.inserir(a);
-			
-			response.sendRedirect("cadastrar_alerta.jsp");
-		} else {
-			response.sendRedirect("cadastrar_alerta.jsp");
 		}
+		request.setAttribute("valido", valido);
+		request.getServletContext().getRequestDispatcher("/cadastrar_alerta.jsp").forward(request, response);
+	}
+	
+	private void verificarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Object usuario = request.getSession().getAttribute("usuario");
+		if (usuario == null) response.sendRedirect("acesso_negado.jsp");
 	}
 }

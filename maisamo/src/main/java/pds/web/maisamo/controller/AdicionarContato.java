@@ -40,7 +40,7 @@ public class AdicionarContato extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		verificarUsuario(request, response);
 	}
 
 	/**
@@ -48,6 +48,9 @@ public class AdicionarContato extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		verificarUsuario(request, response);
+		
+		
 		HttpSession sessao = request.getSession(true);
 		boolean valido = true;
 		
@@ -83,5 +86,10 @@ public class AdicionarContato extends HttpServlet {
 		} 
 		request.setAttribute("valido", valido);
 		request.getServletContext().getRequestDispatcher("/adicionar_contato").forward(request, response);
+	}
+	
+	private void verificarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Object usuario = request.getSession().getAttribute("usuario");
+		if (usuario == null) response.sendRedirect("acesso_negado.jsp");
 	}
 }

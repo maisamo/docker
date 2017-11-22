@@ -4971,7 +4971,7 @@ button.close {
 .modal-dialog {
 	position: relative;
 	width: auto;
-	margin: 10px;
+	margin: auto;
 	pointer-events: none
 }
 
@@ -5034,9 +5034,10 @@ button.close {
 	position: relative;
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
-	padding: 15px
+	padding: 15px;
 }
 
+/* modal-footer backup
 .modal-footer {
 	display: -ms-flexbox;
 	display: flex;
@@ -5044,6 +5045,12 @@ button.close {
 	align-items: center;
 	-ms-flex-pack: end;
 	justify-content: flex-end;
+	padding: 15px;
+	border-top: 1px solid #e9ecef
+} 
+*/
+
+.modal-footer {
 	padding: 15px;
 	border-top: 1px solid #e9ecef
 }
