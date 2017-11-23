@@ -14,40 +14,29 @@ import pds.web.maisamo.fachada.AlertaFacede;
 import pds.web.maisamo.model.Alerta;
 import pds.web.maisamo.model.Usuario;
 
-/**
- * Servlet implementation class VerAlertas
- */
 @WebServlet("/VerAlertas")
 public class VerAlertas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private HttpSession sessao = null;
+	
 	private AlertaFacede af = new AlertaFacede(); 
 	
-    /**
-     * Default constructor. 
-     */
-    public VerAlertas() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession sessao = request.getSession(true);
-		Usuario usuario = sessao.getAttribute("usuario");
+		verificarSessao(request, response);
+		
+		Usuario usuario = (Usuario) sessao.getAttribute("usuario");
 		List<Alerta> alertas = af.listar(usuario);
 		
+		request.setAttribute("alertas", alertas);
 		request.getServletContext().getRequestDispatcher("/visualizar_alertas.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+		verificarSessao(request, response);
 	}
-
+	
+	private void verificarSessao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		sessao = request.getSession(false);
+		if (sessao == null) response.sendRedirect("acesso_negado.jsp");
+	}
 }

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import pds.web.maisamo.fachada.AlertaFacede;
 import pds.web.maisamo.fachada.PaginaFacede;
@@ -29,14 +28,14 @@ import pds.web.maisamo.service.Enviador;
 @WebServlet("/EnviarAlerta")
 public class EnviarAlerta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		verificarUsuario(request, response);
+	private HttpSession sessao = null;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		verificarSessao(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		verificarUsuario(request, response);
+		verificarSessao(request, response);
 		
 		HttpSession sessao = request.getSession(true);
 		Usuario usuario = (Usuario) sessao.getAttribute("usuario");
@@ -61,8 +60,8 @@ public class EnviarAlerta extends HttpServlet {
 		response.sendRedirect("enviar_alerta.jsp");
 	}
 	
-	private void verificarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Object usuario = request.getSession().getAttribute("usuario");
-		if (usuario == null) response.sendRedirect("acesso_negado.jsp");
+	private void verificarSessao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		sessao = request.getSession(false);
+		if (sessao == null) response.sendRedirect("acesso_negado.jsp");
 	}
 }

@@ -11,47 +11,33 @@ import javax.servlet.http.HttpSession;
 import pds.web.maisamo.fachada.ContatoFacede;
 import pds.web.maisamo.model.Usuario;
 import pds.web.maisamo.model.Contato;
+
+/*
 import pds.web.maisamo.fachada.EmailFacede;
 import pds.web.maisamo.model.Email;
 import pds.web.maisamo.fachada.FoneFacede;
 import pds.web.maisamo.model.Fone;
+*/
 
-/**
- * Servlet implementation class NovoContato
- */
 @WebServlet("/AdicionarContato")
 public class AdicionarContato extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
+    private HttpSession sessao = null;  
+	
 	private ContatoFacede cf = new ContatoFacede();
+	
+	/*
 	private EmailFacede ef = new EmailFacede();
 	private FoneFacede ff = new FoneFacede();
+	*/
 	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdicionarContato() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		verificarUsuario(request, response);
+		verificarSessao(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		verificarUsuario(request, response);
+		verificarSessao(request, response);
 		
-		
-		HttpSession sessao = request.getSession(true);
 		boolean valido = true;
 		
 		String nome = request.getParameter("contatoNome");
@@ -88,8 +74,8 @@ public class AdicionarContato extends HttpServlet {
 		request.getServletContext().getRequestDispatcher("/adicionar_contato").forward(request, response);
 	}
 	
-	private void verificarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Object usuario = request.getSession().getAttribute("usuario");
-		if (usuario == null) response.sendRedirect("acesso_negado.jsp");
+	private void verificarSessao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		sessao = request.getSession(false);
+		if (sessao == null) response.sendRedirect("acesso_negado.jsp");
 	}
 }

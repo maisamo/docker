@@ -62,7 +62,8 @@
         </div>
       </div>
     </div>
-    <!-- Modal-->
+    
+    <!-- inválido Modal-->
   	<div id="invalido_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-center">
 		<div role="document" class="modal-dialog">
 	  		<div class="modal-content">

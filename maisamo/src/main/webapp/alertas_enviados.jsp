@@ -129,15 +129,35 @@
                         <td>${alerta_enviado.datahora_envio}</td>
                         <td>${alerta_enviado.alerta.categoria}</td>
                         <td>${alerta_enviado.alerta.titulo}</td>
-                        <td><button name="${envio_alerta.id}" type="button" onclick="window.location.href='VerContatosPorEnvio'" class="btn btn-outline-info">Contatos</button></td>
-                        <td><button name="${envio_alerta.id}" type="button" class="btn btn-outline-danger">Excluir</button></td>
+                        <td><button type="button" onclick="window.location.href='VerContatosPorEnvio?eaid=${envio_alerta.id}'" class="btn btn-outline-info">Contatos</button></td>
+                        <td><button type="button" class="btn btn-outline-danger">Excluir</button></td>
                       </tr>
                     </c:forEach>
                     </tbody>
                   </table>
                 </div>
               </div>
-            </div>        
+            </div>
+            
+            <!-- mostrar Modal-->
+		  	<div id="mostrar_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-center">
+				<div role="document" class="modal-dialog">
+			  		<div class="modal-content">
+			    		<div class="modal-header">
+			      			<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+			    		</div>
+			    		<div class="modal-body">
+			    		<c:forEach var="contato_por_envio" items="${contatos_por_envio}">
+	                      <span class="text-danger">${contato_por_envio.nome}</span>
+	                    </c:forEach>
+			      			
+			      		</div>
+			    		<div class="modal-footer">
+			      			<button type="button" data-dismiss="modal" class="btn btn-secondary">Fechar</button>
+			    		</div>
+			  		</div>
+				</div>
+		  	</div>        
           </div>
         </div>
       </section>

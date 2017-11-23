@@ -152,7 +152,7 @@
 			                      <th>Nome</th>
 			                      <th>E-mail</th>
 			                      <th>Telefone</th>
-			                      <th>Selecionar</th>
+			                      <th></th>
 			                    </tr>
 			                  </thead>
 			                  <tfoot>
@@ -160,7 +160,7 @@
 			                      <th>Nome</th>
 			                      <th>E-mail</th>
 			                      <th>Telefone</th>
-			                      <th>Selecionar</th>
+			                      <th></th>
 			                    </tr>
 			                  </tfoot>
 			                  <tbody>
@@ -171,8 +171,8 @@
 			                      <td>${contato.fone}</td>
 			                      <td>
 								  	<div class="i-checks">
-			                          <input id="checkboxCustom${id.count}" type="checkbox" value="${contato.id}" class="form-control-custom">
-			                          <label for="checkboxCustom${id.count}">Selecionar</label>
+			                          <input id="checkboxCustom${id.count}" name="enviarPara" type="checkbox" value="${contato.id}" class="form-control-custom">
+			                          <label for="checkboxCustom${id.count}">&nbsp;</label>
 			                        </div>
 								  </td>
 			                    </tr>

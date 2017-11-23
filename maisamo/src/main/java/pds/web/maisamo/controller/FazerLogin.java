@@ -11,37 +11,18 @@ import javax.servlet.http.HttpSession;
 import pds.web.maisamo.fachada.UsuarioFacede;
 import pds.web.maisamo.model.Usuario;
 
-/**
- * Servlet implementation class FazerLogin
- */
 @WebServlet("/FazerLogin")
 public class FazerLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private HttpSession sessao = null;
+	
 	private UsuarioFacede uf = new UsuarioFacede();
 	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FazerLogin() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession sessao = request.getSession(true);
 		boolean valido = false;
 		
 		String login = request.getParameter("loginUsuario");
@@ -50,6 +31,7 @@ public class FazerLogin extends HttpServlet {
 		Usuario u = uf.autenticar(login, senha);
 		
 		if (u != null) {
+			sessao = request.getSession(true);
 			sessao.setAttribute("usuario", u);
 			response.sendRedirect("cadastrar_alerta.jsp");
 		} else {
@@ -57,5 +39,4 @@ public class FazerLogin extends HttpServlet {
 			request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
-
 }

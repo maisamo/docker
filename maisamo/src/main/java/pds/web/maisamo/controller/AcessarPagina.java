@@ -16,10 +16,6 @@ import java.time.LocalDateTime;
 @WebServlet("/AcessarPagina")
 public class AcessarPagina extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public AcessarPagina() {
-        super();
-    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AcessoPaginaFacede apf = new AcessoPaginaFacede();		
@@ -38,7 +34,6 @@ public class AcessarPagina extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	
 	}
-
 }
